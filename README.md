@@ -6,6 +6,6 @@ This solver closely follows the methods introduced in [this blog post](http://al
 
 ## masked non-negative matrix factorization problem
 
-Given the non-negative data matrix $D\in\mathbb{R}^{m\times n}_{\geq 0}$ we want to find matrices $W\in\mathbb{R}^{m\times r}_{\geq 0}$ and $H\in\mathbb{R}^{r\times n}_{\geq 0}$  such that $D\approx WH$. The optimization problem can be written as $$ W^{\ast}, H^{\ast} = \arg\min_{W,H} \|D-WH\|_{F}^2 \quad s.t. \quad W\in\mathbb{R}^{m\times r},~~ W\geq 0 ~~and~~ H \in \mathbb{R}^{r\times n},~~ H\geq 0.$$
+Given the non-negative data matrix $D\in\mathbb{R}^{m\times n}_{\geq 0}$ we want to find matrices $W\in\mathbb{R}^{m\times r}_{\geq 0}$ and $H\in\mathbb{R}^{r\times n}_{\geq 0}$  such that $D\approx WH$. The optimization problem can be written as $$ W^{\ast}, H^{\ast} = \arg\min_{W,H} \|D-WH\|_{F}^2 \quad s.t. \quad W\in\mathbb{R}^{m\times r},\quad W\geq 0 \quad and \quad H \in \mathbb{R}^{r\times n},~~ H\geq 0.$$
 
 

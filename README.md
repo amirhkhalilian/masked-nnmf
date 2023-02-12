@@ -38,4 +38,4 @@ $$ W^{\ast}, H^{\ast} = \arg\min_{W,H} \|M\circ(D-WH)\|_{F}^2 \quad \text{s.t.} 
 
 Example using the hubble dataset is shown in [`hubble_test.m`](./tests/hubble_test.m). The results are 
 
-<img src="./tests/hubble.png", width="600" height="300">
+<img src="./tests/hubble.png" width="600" height="300">

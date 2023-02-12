@@ -31,6 +31,6 @@ In real application, we might have a case where the columns of $D$ represent dif
 
 Let $M\in\{0,1\}^{m\times n}$  be the masking matrix such that $M_{ij}=0$ iff $D_{ij}$ is missing otherwise $M_{ij}=1$. In this case we only want to consider the error on measured signals. So we get,
 
-$$ W^{\ast}, H^{\ast} = \arg\min_{W,H} \|M\circ(D-WH)\|_{F}^2 \quad \text{s.t.} \quad W\in\mathbb{R}^{m\times r},\quad W\geq 0 \quad \text{and}\quad H \in \mathbb{R}^{r\times n}, \quad H\geq 0,$$
+$$ W^{\ast}, H^{\ast} = \arg\min_{W,H} \|M\circ(D-WH)\|_{F}^2 \quad \text{s.t.} \quad W\in\mathbb{R}^{m\times r},\quad W\geq 0 \quad \text{and}\quad H \in \mathbb{R}^{r\times n}, \quad H\geq 0.$$
 
 

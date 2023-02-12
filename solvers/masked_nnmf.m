@@ -70,15 +70,20 @@ function [W, H, opts] = masked_nnmf(D, M, r, varargin)
     % initialize W
     if strcmp(init_mode, 'rand')
         W = rand([size(D,1), r]); % random non-negative init
+        H = zeros([r, size(D,2)]);
     elseif strcmp(init_mode, 'kmeans')
-        [~, W] = kmeans((D.*M)', r, 'Distance', 'cosine', 'Replicates', 5, 'maxiter', 500);
+        [~, W] = kmeans((D.*M)', r,...
+                        'Distance', 'cosine',...
+                        'Replicates', 5,...
+                        'maxiter', 500);
         W = transpose(W);
+        H = zeros([r, size(D,2)]);
     elseif strcmp(init_mode, 'nnmf')
-        [W, H] = nnmf((D.*M), r);
+        [W, H] = nnmf((D.*M), r,...
+                      'Replicates', 5);
     else
         error(['init_mode:' , init_mode, 'is not valid!']);
     end
-    H = zeros([r, size(D,2)]);
     for itr = 1:maxiter
         % update H
         WT = W';
@@ -89,15 +94,23 @@ function [W, H, opts] = masked_nnmf(D, M, r, varargin)
         end
         % update W
         HT = H';
-        parfor (i = 1:size(D,1), num_cores)
+        parfor (i = 1:size(D,1), num_cores) % loop over rows of D
             H_mi_di = sum(H(:,cols2use{i}).*D(i,cols2use{i}),2);
             H_mi_H = H(:,cols2use{i}) * HT(cols2use{i},:);
             W(i,:) = nnlsm_blockpivot(H_mi_H, H_mi_di, true);
         end
-        loss(itr) = norm(M.*(D-W*H), 'fro');
-        loss_abs(itr) = max(abs(M.*(D-W*H)),[],'all');
-        fprintf('itr: %3d, loss:%2.2e, abs_err:%2.2e\n', itr, loss(itr), loss_abs(itr));
+        % log the loss function
+        res = M.*(D-W*H);
+        opts.loss(itr) = norm(res, 'fro');
+        opts.loss_abs(itr) = max(abs(res),[],'all');
+        if verbose
+            fprintf('itr: %3d, loss:%2.2e, abs_err:%2.2e\n',...
+                     itr, opts.loss(itr), opts.loss_abs(itr));
+        end
+        % check stopping criteria
+        if itr>1 && opts.loss(itr-1)-opts.loss(itr)<tol
+            opts.tolerance_reached = true;
+            break
+        end
     end
-    opts = [];
-
 end

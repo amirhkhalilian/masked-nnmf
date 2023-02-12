@@ -2,7 +2,20 @@
 
 Non-negative matrix factorization is a powerful tool for dimensionality reduction and data analysis. Here I have implemented a solver that takes missing entries into account when solving the NNMF problem. The solver is implemented in Matlab and use the method proposed in [this paper](https://ieeexplore.ieee.org/document/4781130) to solve non-negative least squares problem. The code for the paper can be found [here](http://www.cc.gatech.edu/~hpark/software/nmf_bpas.zip).  We use `nnlsm_blockpivot.m` and `solveNormalEqComb.m` files from this package. These files are added under solvers.
 
-This solver closely follows the methods introduced in [this blog post](http://alexhwilliams.info/itsneuronalblog/2018/02/26/censored-lstsq/) and [this paper](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-019-3312-5).
+This solver follows some of the methods introduced in [this blog post](http://alexhwilliams.info/itsneuronalblog/2018/02/26/censored-lstsq/) and [this paper](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-019-3312-5).
+
+## Example
+
+The following shows pseudo-code for calling the solver
+
+```matlab
+D = ... % your data matrix of shape m x n
+M = ... % mask of missing data, matrix m x n (M_{ij}=0 is D_{ij} is missing)
+r = ... % desired rank
+[W, H, opts] = masked_nnmf(D, M, r,...
+						   'init_mode', 'rand',...
+						   'maxiter', 100);
+```
 
 ## masked non-negative matrix factorization problem
 

@@ -13,8 +13,8 @@ D = ... % your data matrix of shape m x n
 M = ... % mask of missing data, matrix m x n (M_{ij}=0 is D_{ij} is missing)
 r = ... % desired rank
 [W, H, opts] = masked_nnmf(D, M, r,...
-						   'init_mode', 'rand',...
-						   'maxiter', 100);
+                           'init_mode', 'rand',...
+                           'maxiter', 100);
 ```
 
 ## masked non-negative matrix factorization problem

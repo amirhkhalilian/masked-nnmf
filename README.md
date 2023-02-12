@@ -34,3 +34,8 @@ Let $M\in\{0,1\}^{m\times n}$  be the masking matrix such that $M_{ij}=0$ iff $D
 $$ W^{\ast}, H^{\ast} = \arg\min_{W,H} \|M\circ(D-WH)\|_{F}^2 \quad \text{s.t.} \quad W\in\mathbb{R}^{m\times r},\quad W\geq 0 \quad \text{and}\quad H \in \mathbb{R}^{r\times n}, \quad H\geq 0.$$
 
 
+### Example on hubble data matrix
+
+Example using the hubble dataset is shown in [`hubble_test.m`](./tests/hubble_test.m). The results are 
+
+<img src="./tests/hubble.png", width="600" height="300">

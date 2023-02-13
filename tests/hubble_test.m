@@ -3,7 +3,7 @@ clc; clear; close all
 % load data
 D = load('./tests/Hubble.mat', 'M').M; % data is stored in veriable M in the mat file
 % create a random mask -- keep p% of enteries
-p = 0.8;
+p = 0.6;
 M = rand(size(D))<=p;
 % data with missing enteries
 MD = M.*D;

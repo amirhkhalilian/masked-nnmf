@@ -24,7 +24,7 @@ function [W, H, opts] = masked_nnmf(D, M, r, varargin)
     p = inputParser;
     addParameter(p, 'maxiter', 100);
     addParameter(p, 'verbose', true);
-    addParameter(p, 'use_parallel', true);
+    addParameter(p, 'use_parallel', false);
     addParameter(p, 'num_cores', 10);
     addParameter(p, 'tol', 1e-4);
     addParameter(p, 'init_mode', 'rand');

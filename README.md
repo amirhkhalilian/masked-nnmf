@@ -4,6 +4,8 @@ Non-negative matrix factorization is a powerful tool for dimensionality reductio
 
 This solver follows some of the methods introduced in [this blog post](http://alexhwilliams.info/itsneuronalblog/2018/02/26/censored-lstsq/) and [this paper](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-019-3312-5).
 
+I have written a short blog post about this problem [here](https://amirhkhalilian.github.io/blog/MaskedNMF/).
+
 ## Example
 
 The following shows pseudo-code for calling the solver
